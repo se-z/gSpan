@@ -1,0 +1,4 @@
+data_path = "./demo-data"
+struct_file_name = "0.xsdf"
+min_sup = 2
+max_depth = 3
