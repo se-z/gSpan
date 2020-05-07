@@ -66,7 +66,6 @@ bool get_forward_pure(Graph &graph, Edge *e, int minlabel, History &history,
     result.clear();
 
     assert(e->to >= 0 && e->to < graph.size());
-    /* Walk all edges leaving from vertex e->to. */
 
     for(auto &edg : graph[e->to].edge) {
         if(minlabel > graph[edg.to].label || history.hasVertex(edg.to)) {
@@ -83,13 +82,8 @@ bool get_forward_root(Graph &g, Vertex &v, EdgeList &result) {
     result.clear();
     for(auto &edg : v.edge) {
         assert(edg.to >= 0 && edg.to < g.size());
-        //  選別して入力しているように見える
         if(v.label <= g[edg.to].label) {
-            //  labelのみの辞書順で, resultにpushbackしてる.
-            //  この時点ではedgeに重複がある
-            // vector型のiteratorをポインタに変えてpush backする
-            result.push_back(
-                &edg); // vector型のiteratorをポインタに変えてpush backする
+            result.push_back(&edg);
         }
     }
     return (!result.empty());
@@ -164,7 +158,7 @@ Graph *DFS2Graph(DFSCode &dfs) {
 
     g.resize(max_id + 1);
 
-    unsigned int fid, tid; // 重複ありの実装
+    unsigned int fid, tid;
     for(int i = 0; i < (int)dfs.size(); ++i) {
         fid = dfs[i].from;
         tid = dfs[i].to;
@@ -173,12 +167,9 @@ Graph *DFS2Graph(DFSCode &dfs) {
         g[fid].push(fid, tid, dfs[i].elabel);
         g[tid].label = dfs[i].tolabel;
         g[tid].push(tid, fid, dfs[i].elabel);
-
-        // if (!directed)
-        //     (*this)[tid].push(tid, fid, dfs[i].elabel);
     }
 
-    builderEdge(g); // edgeに順にナンバリングしていってる?.
+    builderEdge(g);
 
     return &g;
 }
