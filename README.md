@@ -10,7 +10,7 @@ C++ source of Frequent subgraph pattern mining algorithm.
 - Input : Connected labeled Graph database
 - Output : frequent subgraph in database
 
-Implementation of gSpan by non-authors. gSpan is one of the most famous algorithm of frequent subgraph pattern mining. Traverse process is not stored in the memory. There is onmemory type gSpan. If you need module for multiple access to the subgraphs on the traversed tree structure, please refer to [this implementation](). 
+Implementation of gSpan by non-authors. gSpan is one of the most famous algorithm of frequent subgraph pattern mining. Traverse process is not stored in the memory. There is onmemory type gSpan. If you need module for multiple access to the subgraphs on the traversed tree structure, please refer to [this implementation](https://github.com/se-z/onMemory-gSpan). 
 
 
 ## Requirement
